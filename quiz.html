@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sul Bodybuilding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .answers {
+            margin-bottom: 20px;
+        }
+        .answers input {
+            margin-right: 10px;
+        }
+        .btn {
+            display: inline-block;
+            background: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .result {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quiz sul Bodybuilding</h1>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+        <button class="btn" onclick="submitQuiz()">Invia Risposte</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const domande = [
+            // Domande facili
+            { domanda: "Qual è il muscolo principale lavorato durante il curl con manubri?", risposta: "bicipiti" },
+            { domanda: "Quanti giorni a settimana è raccomandato allenarsi per un principiante?", risposta: "3" },
+            { domanda: "Quale macronutriente è essenziale per la costruzione muscolare?", risposta: "proteine" },
+            { domanda: "Quale esercizio lavora principalmente il petto?", risposta: "panca" },
+            { domanda: "Qual è un buon numero di ripetizioni per aumentare la forza?", risposta: "5" },
+            { domanda: "Qual è il muscolo principale lavorato durante lo squat?", risposta: "quadricipiti" },
+            { domanda: "Quale esercizio è considerato il re degli esercizi per la parte superiore del corpo?", risposta: "panca piana" },
+            { domanda: "Quale tipo di esercizio coinvolge più articolazioni?", risposta: "compound" },
+            { domanda: "Quanto tempo dovrebbe durare una sessione di allenamento per un principiante?", risposta: "60 minuti" },
+            { domanda: "Qual è un buon numero di ripetizioni per l'ipertrofia?", risposta: "8-12" },
+
+            // Domande difficili
+            { domanda: "Qual è il nome scientifico del muscolo del polpaccio?", risposta: "gastrocnemio" },
+            { domanda: "Quale ormone è più influente nella crescita muscolare?", risposta: "testosterone" },
+            { domanda: "Qual è il tempo di riposo ideale tra le serie per la crescita muscolare?", risposta: "60-90 secondi" },
+            { domanda: "Quale aminoacido è spesso chiamato il re degli aminoacidi?", risposta: "leucina" },
+            { domanda: "Qual è il nome completo dell'acronimo DOMS?", risposta: "delayed onset muscle soreness" },
+
+            // Domande impossibili
+            { domanda: "Quanti muscoli compongono il gruppo dei flessori dell'anca?", risposta: "11" },
+            { domanda: "Quanti grammi di leucina sono necessari per massimizzare la sintesi proteica muscolare?", risposta: "3 grammi" },
+            { domanda: "Quale proteina muscolare è responsabile della contrazione muscolare?", risposta: "actina e miosina" },
+            { domanda: "Qual è la percentuale massima di grasso corporeo raccomandata per una competizione di bodybuilding maschile?", risposta: "5%" },
+            { domanda: "Quanti chilogrammi può sollevare Eddie Hall nel deadlift per stabilire il record mondiale?", risposta: "500 kg" }
+        ];
+
+        function renderQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            let quizContent = '';
+
+            domande.forEach((item, index) => {
+                quizContent += `
+                    <div class="question">
+                        <p>${index + 1}. ${item.domanda}</p>
+                        <div class="answers">
+                            <input type="text" id="answer${index}" placeholder="La tua risposta">
+                        </div>
+                    </div>
+                `;
+            });
+
+            quizContainer.innerHTML = quizContent;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            domande.forEach((item, index) => {
+                const userAnswer = document.getElementById(`answer${index}`).value.trim().toLowerCase();
+                if (userAnswer === item.risposta.toLowerCase()) {
+                    score++;
+                }
+            });
+
+            const resultContainer = document.getElementById('result');
+            resultContainer.textContent = `Hai risposto correttamente a ${score} su ${domande.length} domande.`;
+
+            if (score >= 17) {
+                resultContainer.textContent += " Complimenti! Hai vinto il quiz!";
+            } else {
+                resultContainer.textContent += " Non hai vinto questa volta. Riprova!";
+            }
+        }
+
+        // Esegui il rendering del quiz all'inizio
+        renderQuiz();
+    </script>
+</body>
+</html>
