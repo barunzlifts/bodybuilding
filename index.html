@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz sul Bodybuilding</title>
-    <link rel="stylesheet" href="style.css"> <script src="script.js"></script> </head>
+    <title>Metti alla prova le tue conoscenze sul benessere!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <div class="quiz-container">
-        <h1>Quiz sul Bodybuilding</h1>
-        <p>Rispondi correttamente ad almeno 17 domande per vincere!</p>
+        <h1>Quanto sai sul tuo corpo?</h1>
+        <p>Rispondi a queste domande divertenti e impara qualcosa di nuovo!</p>
         <form id="quiz-form">
-            </form>
-        <button type="submit" form="quiz-form">Invia Risposte</button>
+        </form>
+        <button type="submit" form="quiz-form" disabled>Inizia il quiz!</button>
         <div id="result" style="display: none;">
             <h2>Risultato</h2>
-            <p>Hai ottenuto <span id="score"></span> punti su 20.</p>
+            <p>Hai ottenuto <span id="score"></span> punti su <span id="total-questions"></span>.</p>
             <p id="message"></p>
+            <button id="replay">Riprova!</button>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
