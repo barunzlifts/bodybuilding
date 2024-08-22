@@ -6,19 +6,88 @@ const replayButton = document.getElementById('replay');
 const scoreElement = document.getElementById('score');
 const totalQuestionsElement = document.getElementById('total-questions');
 
-// Domande più adatte a un pubblico giovane e focalizzate sul benessere
 const domande = [
     {
-        domanda: "Qual è il frutto migliore per una merenda sana?",
-        risposte: ["Patatine fritte", "Cioccolato", "Mela", "Bibita gassata"],
-        rispostaCorretta: 2
+        domanda: "Qual è l'esercizio fondamentale per allenare il petto?",
+        risposte: ["Panca piana", "Squat", "Stacco da terra", "Curl con manubri"],
+        rispostaCorretta: 0
     },
     {
-        domanda: "Qual è l'attività fisica più divertente?",
-        risposte: ["Guardare la TV", "Giocare ai videogiochi", "Andare in bicicletta", "Mangiare pizza"],
+        domanda: "Qual è il macronutriente principale per la crescita muscolare?",
+        risposte: ["Grassi", "Carboidrati", "Proteine", "Fibre"],
         rispostaCorretta: 2
     },
-    // ... altre domande
+    // ... altre 18 domande, ad esempio:
+    {
+        domanda: "Quanti giorni alla settimana è consigliabile allenarsi?",
+        risposte: ["1-2", "3-4", "5-6", "Tutti i giorni"],
+        rispostaCorretta: 2
+    },
+    // Aggiungere qui le altre domande
 ];
 
-// ... (resto del codice identico)
+// Genera il quiz
+function creaQuiz() {
+    domande.forEach((domanda, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        
+        const domandaTitle = document.createElement('h3');
+        domandaTitle.textContent = `${index + 1}. ${domanda.domanda}`;
+        questionElement.appendChild(domandaTitle);
+        
+        const selectElement = document.createElement('select');
+        selectElement.name = `question-${index}`;
+        domanda.risposte.forEach((risposta, i) => {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = risposta;
+            selectElement.appendChild(option);
+        });
+        questionElement.appendChild(selectElement);
+        
+        quizForm.appendChild(questionElement);
+    });
+    submitButton.disabled = false;
+}
+
+// Controlla le risposte e calcola il punteggio
+function controllaRisposte(event) {
+    event.preventDefault();
+    let score = 0;
+
+    domande.forEach((domanda, index) => {
+        const rispostaSelezionata = parseInt(quizForm[`question-${index}`].value);
+        if (rispostaSelezionata === domanda.rispostaCorretta) {
+            score++;
+        }
+    });
+
+    mostraRisultato(score);
+}
+
+// Mostra il risultato
+function mostraRisultato(score) {
+    quizContainer.style.display = 'none';
+    resultDiv.style.display = 'block';
+    
+    scoreElement.textContent = score;
+    totalQuestionsElement.textContent = domande.length;
+
+    const messageElement = document.getElementById('message');
+    if (score >= 17) {
+        messageElement.textContent = "Complimenti, hai vinto!";
+    } else {
+        messageElement.textContent = "Non hai ottenuto il punteggio necessario. Riprova!";
+    }
+}
+
+// Riprova il quiz
+function riprovaQuiz() {
+    window.location.reload();
+}
+
+quizForm.addEventListener('submit', controllaRisposte);
+replayButton.addEventListener('click', riprovaQuiz);
+
+creaQuiz();
