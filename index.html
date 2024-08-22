@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Metti alla prova le tue conoscenze sul benessere!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metti alla prova le tue conoscenze sul bodybuilding!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="quiz-container">
-        <h1>Quanto sai sul tuo corpo?</h1>
-        <p>Rispondi a queste domande divertenti e impara qualcosa di nuovo!</p>
+        <h1>Quanto sai sul bodybuilding?</h1>
+        <p>Rispondi a queste domande divertenti e scopri quanto conosci!</p>
         <form id="quiz-form">
+            <!-- Le domande verranno inserite dinamicamente qui -->
         </form>
-        <button type="submit" form="quiz-form" disabled>Inizia il quiz!</button>
+        <button type="submit" form="quiz-form" id="start-quiz" disabled>Inizia il quiz!</button>
         <div id="result" style="display: none;">
             <h2>Risultato</h2>
             <p>Hai ottenuto <span id="score"></span> punti su <span id="total-questions"></span>.</p>
