@@ -6,6 +6,7 @@ const replayButton = document.getElementById('replay');
 const scoreElement = document.getElementById('score');
 const totalQuestionsElement = document.getElementById('total-questions');
 
+// Domande per il quiz
 const domande = [
     {
         domanda: "Qual è l'esercizio fondamentale per allenare il petto?",
@@ -17,16 +18,10 @@ const domande = [
         risposte: ["Grassi", "Carboidrati", "Proteine", "Fibre"],
         rispostaCorretta: 2
     },
-    // ... altre 18 domande, ad esempio:
-    {
-        domanda: "Quanti giorni alla settimana è consigliabile allenarsi?",
-        risposte: ["1-2", "3-4", "5-6", "Tutti i giorni"],
-        rispostaCorretta: 2
-    },
-    // Aggiungere qui le altre domande
+    // Aggiungi altre domande qui (fino a 20)
+    // ...
 ];
 
-// Genera il quiz
 function creaQuiz() {
     domande.forEach((domanda, index) => {
         const questionElement = document.createElement('div');
